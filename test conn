@@ -17,3 +17,16 @@ Test Using curl (Terminal)If you don't want to write code, paste this into your 
   -H "Content-Type: application/json" \
   -H "api-key: YOUR_KEY" \
   -d '{"messages":[{"role": "user", "content": "Hi"}]}'
+
+
+$body = @{
+    messages = @(
+        @{ role = "user"; content = "Hello, are you connected?" }
+    )
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "[YOUR_ENDPOINT]/openai/deployments/[YOUR_DEPLOYMENT_NAME]/chat/completions?api-version=[YOUR_VERSION]" `
+    -Method Post `
+    -Headers @{ "api-key" = "[YOUR_KEY]" } `
+    -ContentType "application/json" `
+    -Body $body
