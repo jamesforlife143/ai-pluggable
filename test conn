@@ -18,6 +18,7 @@ Test Using curl (Terminal)If you don't want to write code, paste this into your 
   -H "api-key: YOUR_KEY" \
   -d '{"messages":[{"role": "user", "content": "Hi"}]}'
 
+---Powershell
 
 $body = @{
     messages = @(
