@@ -1,0 +1,19 @@
+from openai import AzureOpenAI
+
+client = AzureOpenAI(
+    azure_endpoint="YOUR_ENDPOINT_URL", 
+    api_key="YOUR_KEY",  
+    api_version="YOUR_VERSION" # e.g., "2024-02-01"
+)
+
+response = client.chat.completions.create(
+    model="YOUR_DEPLOYMENT_NAME", # The name you gave your model in Azure
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+
+Test Using curl (Terminal)If you don't want to write code, paste this into your terminal (Command Prompt or Bash). Replace the bracketed text with your values.bashcurl "YOUR_ENDPOINT_URL/openai/deployments/YOUR_DEPLOYMENT_NAME/chat/completions?api-version=YOUR_VERSION" \
+  -H "Content-Type: application/json" \
+  -H "api-key: YOUR_KEY" \
+  -d '{"messages":[{"role": "user", "content": "Hi"}]}'
